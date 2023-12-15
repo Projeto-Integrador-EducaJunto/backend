@@ -24,7 +24,7 @@ public class Tema {
 	private String nome;
 	
 	@Column(length = 255)
-	@Size(min = 10, max = 255, message = "O atributo descrição precisa ter entre 10 e 255 caracteres.") // definimos o tamanho da descrição
+	@Size(min = 10, max = 255, message = "O atributo descrição precisa ter entre 10 e 255 caracteres. ") // definimos o tamanho da descrição
 	private String descricao;
 
 	public long getId() {
