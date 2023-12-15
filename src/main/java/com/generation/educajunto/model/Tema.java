@@ -9,22 +9,21 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@Entity // defini que vai ser uma tabela
-@Table(name = "tb_temas") // defini o nome da tabela 
-
+@Entity
+@Table(name = "tb_temas") 
 public class Tema {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // configura que vai auto incremento
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id ;
 	
 	@Column(length = 32)
-	@Size(min = 10, max = 32, message = "O atributo nome precisa ter entre 10 e 32 caracteres.") // definimos o tamanho de no max 32 caracteres
-	@NotBlank(message = " O atributo Nome é obrigatório.") // definimos que o nome é obrigatorio
+	@Size(min = 10, max = 32, message = "O nome deve possuir no mínimo 10 caracteres e no máximo 32.")
+	@NotBlank(message = " O atributo Nome é obrigatório.")
 	private String nome;
 	
 	@Column(length = 255)
-	@Size(min = 10, max = 255, message = "O atributo descrição precisa ter entre 10 e 255 caracteres. ") // definimos o tamanho da descrição
+	@Size(min = 10, max = 255, message = "A descrição deve possuir no mínimo 10 caracteres e no máximo 255. ")
 	private String descricao;
 
 	public long getId() {
@@ -50,4 +49,5 @@ public class Tema {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
 }
