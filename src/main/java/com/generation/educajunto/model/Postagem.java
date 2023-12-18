@@ -4,37 +4,41 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tb_postagens") 
+@Table(name = "tb_postagens")
 public class Postagem {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
-	
+
 	@NotBlank(message = " O atributo conteudo é obrigatório.")
 	@Column(columnDefinition = "TEXT")
 	private String conteudo;
-	
-	
+
 	private String anexo;
-	
-	
+
 	@NotNull(message = " O atributo estado é obrigatório.")
 	private Integer estado;
-	
+
 	@UpdateTimestamp
 	private LocalDateTime data_hora;
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagens")
+	private Tema tema;
 
 	public long getId() {
 		return id;
@@ -75,8 +79,13 @@ public class Postagem {
 	public void setData_hora(LocalDateTime data_hora) {
 		this.data_hora = data_hora;
 	}
-	
-	
-	
-	
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+
 }
