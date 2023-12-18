@@ -20,6 +20,9 @@ import com.generation.educajunto.repository.PostagemRepository;
 
 import jakarta.validation.Valid;
 
+@RestController
+@RequestMapping("/postagens")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class PostagemController {
 
 	@Autowired
