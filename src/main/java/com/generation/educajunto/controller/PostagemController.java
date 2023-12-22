@@ -21,6 +21,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.generation.educajunto.model.Postagem;
 import com.generation.educajunto.repository.PostagemRepository;
 import com.generation.educajunto.repository.TemaRepository;
+import com.generation.educajunto.repository.UsuarioRepository;
 
 import jakarta.validation.Valid;
 
@@ -34,6 +35,9 @@ public class PostagemController {
 
 	@Autowired
 	private TemaRepository temaRepository;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
 
 	@GetMapping
 	public ResponseEntity<List<Postagem>> getAll() {
@@ -54,11 +58,16 @@ public class PostagemController {
 
 	@PostMapping
 	public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem) {
-		if (temaRepository.existsById(postagem.getTema().getId()))
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(postagemRepository.save(postagem));
-
-		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema inexistente!", null);
+		if (usuarioRepository.existsById(postagem.getUsuario().getId())) {
+			
+			if (temaRepository.existsById(postagem.getTema().getId()))
+				return ResponseEntity.status(HttpStatus.CREATED)
+						.body(postagemRepository.save(postagem));
+			
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema inexistente!", null);
+		}
+		
+		throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário inexistente!", null);
 	}
 
 	@PutMapping
