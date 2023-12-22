@@ -12,6 +12,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.educajunto.model.Usuario;
 import com.generation.educajunto.model.UsuarioLogin;
+import com.generation.educajunto.repository.UsuarioRepository;
+import com.generation.educajunto.security.JwtService;
 
 @Service
 public class UsuarioService {

@@ -19,6 +19,8 @@ import com.generation.educajunto.model.Usuario;
 import com.generation.educajunto.model.UsuarioLogin;
 import com.generation.educajunto.repository.UsuarioRepository;
 import com.generation.educajunto.service.UsuarioService;
+
+import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
