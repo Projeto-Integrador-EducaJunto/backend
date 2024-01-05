@@ -44,6 +44,7 @@ public class UsuarioController {
 		return usuarioRepository.findById(id)
 			.map(resposta -> ResponseEntity.ok(resposta))
 			.orElse(ResponseEntity.notFound().build());
+		//so pra subir
 	}
 	
 	@PostMapping("/cadastrar")
